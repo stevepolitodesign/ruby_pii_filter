@@ -62,6 +62,14 @@ module PII
       people.map { it.fetch(:text) }
     end
 
+    # @return [Array<String>] All locations identified by the NER model.
+    def locations
+      # TODO: Account for confidence score
+      entities = doc.entities.filter { it.fetch(:tag) == "LOCATION" }
+
+      entities.map { it.fetch(:text) }
+    end
+
     # @return [Array<String>] All phone numbers found.
     def phone_numbers
       output.scan(PHONE_REGEX)
@@ -94,6 +102,7 @@ module PII
       filter email_addresses, label: "EMAIL"
       filter credit_card_numbers, label: "CREDIT_CARD_NUMBER"
       filter names, label: "NAME"
+      filter locations, label: "LOCATION"
       filter phone_numbers, label: "PHONE_NUMBER"
       filter social_security_numbers, label: "SOCIAL_SECURITY_NUMBER"
     end
