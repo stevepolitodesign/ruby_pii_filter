@@ -1,6 +1,6 @@
 # Ruby PII Filter
 
-This is a proof of concept.
+This is a proof of concept, and is the soure of inspiration for [Top Secret](https://github.com/thoughtbot/top_secret)
 
 Creates an interface for filtering personally identifiable information (PII)
 from free text, before sending it to external services or APIs, such as
